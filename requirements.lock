@@ -17,7 +17,7 @@ attrs==25.3.0
 cffi==1.17.1
     # via sounddevice
 charz==0.1.0
-    # via ascii-hands
+    # via havsalt-ascii-hands
 charz-core==0.1.1
     # via charz
 colex==0.3.1
@@ -36,7 +36,7 @@ jaxlib==0.6.2
     # via jax
     # via mediapipe
 keyboard==0.13.5
-    # via ascii-hands
+    # via havsalt-ascii-hands
 kiwisolver==1.4.8
     # via matplotlib
 linflex==0.3.1
@@ -44,7 +44,7 @@ linflex==0.3.1
 matplotlib==3.10.3
     # via mediapipe
 mediapipe==0.10.21
-    # via ascii-hands
+    # via havsalt-ascii-hands
 ml-dtypes==0.5.1
     # via jax
     # via jaxlib
@@ -61,7 +61,7 @@ numpy==1.26.4
 opencv-contrib-python==4.11.0.86
     # via mediapipe
 opencv-python==4.11.0.86
-    # via ascii-hands
+    # via havsalt-ascii-hands
 opt-einsum==3.4.0
     # via jax
 packaging==25.0

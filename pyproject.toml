@@ -1,5 +1,5 @@
 [project]
-name = "ascii-hands"
+name = "havsalt-ascii-hands"
 version = "0.1.0"
 description = "Live hand tracking with ASCII graphics"
 authors = [
