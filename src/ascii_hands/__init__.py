@@ -4,13 +4,7 @@ import colex
 import keyboard
 import cv2
 from mediapipe.python.solutions.hands import Hands
-from mediapipe.python.solutions.face_detection import FaceDetection
 from charz import Engine, Screen, Clock, Scene, Group, Sprite, Label, Vec2
-
-
-# ip = input("Enter IP: ") or "10.0.98.11"
-# port = input("Enter PORT: ") or 8080
-# URL = f"https://{ip}:{port}/video"
 
 
 class ShortLived:
@@ -57,9 +51,7 @@ class App(Engine):
     def __init__(self) -> None:
         print("[Startup] Starting program...", end="\r")
         # Mediapipe setup
-        self.hands = Hands()
-        self.face_detection = FaceDetection()
-        # self.video_capture = cv2.VideoCapture(URL)
+        self.hands = Hands(max_num_hands=2)
         self.video_capture = cv2.VideoCapture(0)
         self.node_count = Label(position=Vec2.ONE, text="Nodes: ???")
 
@@ -89,19 +81,18 @@ class App(Engine):
         results = self.hands.process(rgb_frame)
         if results.multi_hand_landmarks:  # type: ignore
             for hand in results.multi_hand_landmarks:  # type: ignore
-
                 for index, connection_pair in enumerate(CONNECTION_PAIRS):
                     landmark_index_start, landmark_index_end = connection_pair
                     point1 = hand.landmark[landmark_index_start]
                     point2 = hand.landmark[landmark_index_end]
                     segment_index = (point1.z + point2.z) / 2
                     line_start = Vec2(
-                        int(point1.x * self.screen.width),
-                        int(point1.y * self.screen.height),
+                        point1.x * self.screen.width,
+                        point1.y * self.screen.height,
                     )
                     line_end = Vec2(
-                        int(point2.x * self.screen.width),
-                        int(point2.y * self.screen.height),
+                        point2.x * self.screen.width,
+                        point2.y * self.screen.height,
                     )
                     HandLandmarkVisualPoint(
                         position=line_start,
@@ -119,7 +110,8 @@ class App(Engine):
                             rotation=angle,
                             z_index=segment_index,
                         )
-                    if int(total_step_length) != total_step_length:  # Check if length is float number
+                    # Check if length is float number
+                    if int(total_step_length) != total_step_length:
                         # Point: End
                         HandLandmarkVisualConnector(
                             position=line_start,
@@ -132,8 +124,8 @@ class App(Engine):
                         continue
                     FingerTipVisualPoint(
                         position=Vec2(
-                            int(point.x * self.screen.width),
-                            int(point.y * self.screen.height),
+                            point.x * self.screen.width,
+                            point.y * self.screen.height,
                         )
                     )
 
