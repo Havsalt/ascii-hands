@@ -1,6 +1,6 @@
 # ASCII Hands
 
-Live hand tracking with ASCII graphics
+Live hand tracking with ASCII graphics.
 
 ![Friendly ASCII hands demo](./images/peace_gesture.png)
 

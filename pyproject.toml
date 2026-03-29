@@ -1,33 +1,30 @@
+[build-system]
+requires = ["uv_build"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "ascii_hands"
+
 [project]
 name = "havsalt-ascii-hands"
-version = "0.1.0"
+version = "0.2.0"
 description = "Live hand tracking with ASCII graphics"
 authors = [
     { name = "Havsalt", email = "77575424+Havsalt@users.noreply.github.com" }
 ]
+readme = "README.md"
+license = "MIT"
+license-files = ["LICEN[CS]E*"]
+requires-python = "==3.12.*"
 dependencies = [
     "opencv-python~=4.11.0.86",
-    "mediapipe~=0.10.21",
+    # "mediapipe==0.10.33",
+    "mediapipe==0.10.21",
     "keyboard~=0.13.5",
     "charz~=0.1.0",
+    "structlog~=25.4",
 ]
-readme = "README.md"
-requires-python = "== 3.12"
-license = { text = "MIT" }
 
 [project.scripts]
-"ascii-hands" = "ascii_hands:main"
-
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
-
-[tool.rye]
-managed = true
-dev-dependencies = []
-
-[tool.hatch.metadata]
-allow-direct-references = true
-
-[tool.hatch.build.targets.wheel]
-packages = ["src/ascii_hands"]
+havsalt-ascii-hands = "ascii_hands:main"
+ascii-hands = "ascii_hands:main"
